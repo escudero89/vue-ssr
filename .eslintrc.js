@@ -15,5 +15,6 @@ module.exports = {
       exports: 'never',
       functions: 'never',
     }],
+    indent: ['error', 2],
   },
 }

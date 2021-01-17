@@ -2,7 +2,7 @@ const Vue = require('vue')
 const server = require('express')()
 const renderer = require('vue-server-renderer').createRenderer()
 
-server.get('*', (req, res) => {
+server.get('*', async (req, res) => {
   const app = new Vue({
     data: function () {
       return {
@@ -12,10 +12,9 @@ server.get('*', (req, res) => {
     template: '<div>The visited url is {{ url }}</div>',
   })
 
-  renderer.renderToString(app, (err, html) => {
-    if (err) {
-      return res.status(500).end('Internal Server Error')
-    }
+  try {
+    const html = await renderer.renderToString(app)
+
     res.end(`
       <!DOCTYPE html>
       <html lang="en">
@@ -23,7 +22,9 @@ server.get('*', (req, res) => {
         <body>${html}</body>
       </html>
     `)
-  })
+  } catch (err) {
+    res.status(500).end('Internal Server Error')
+  }
 })
 
 server.listen(8080)
