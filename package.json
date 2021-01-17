@@ -2,13 +2,19 @@
   "name": "vue-ssr",
   "version": "0.0.1",
   "description": "Vue Server Side Rendering test app",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+		"lint:js": "eslint --ext .js,.vue src",
+		"lint:js:fix": "eslint --ext .js,.vue --fix src",
+		"lint": "lint:js",
+		"lint:fix": "lint:js:fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Cristian Escudero",
   "license": "ISC",
   "dependencies": {
+    "eslint": "^7.18.0",
+    "eslint-plugin-vue": "^7.4.1",
     "vue": "^2.6.12",
     "vue-server-renderer": "^2.6.12"
   }
