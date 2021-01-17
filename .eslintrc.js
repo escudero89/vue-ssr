@@ -1,12 +1,19 @@
 module.exports = {
   env: {
-    node:  true,
+    node: true,
   },
   extends: [
+    'standard',
     'eslint:recommended',
     'plugin:vue/vue3-recommended',
   ],
   rules: {
-		'indent': ['error', 2]
-  }
-};
+    'comma-dangle': ['error', {
+      arrays: 'always-multiline',
+      objects: 'always',
+      imports: 'never',
+      exports: 'never',
+      functions: 'never',
+    }],
+  },
+}
